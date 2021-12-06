@@ -29,31 +29,44 @@ function buildQuiz(){
     questionContainer.innerHTML = iH
 }
 
-let answersCorrect = 0
+let answersCorrect = []
 
 function getAnswer(currentInput, currentQuestionIndex) {
     let userInput = currentInput.value
     if (userInput == `${myQuestions[currentQuestionIndex].answer}`) {
         document.getElementById("question_"+currentQuestionIndex).style.backgroundColor = 'lightGreen';
-        answersCorrect++;
+        answersCorrect[currentQuestionIndex] = true;
         console.log(answersCorrect);
         correctAnswerTracker();
     }
     else { document.getElementById("question_" + currentQuestionIndex).style.backgroundColor = 'lightCoral';
-        answersCorrect--;
+        answersCorrect[currentQuestionIndex] = false
+        console.log(answersCorrect);
+        correctAnswerTracker();
     }
 }
 
 function correctAnswerTracker() {
     // alert
     // let correctAnswers = document.getElementById("question_" + currentQuestionIndex).style.backgroundColor = 'lightGreen'
-    let numberCorrect = document.getElementById("numberCorrect")
+    // let numberCorrect = document.getElementById("numberCorrect")
+    // if (answersCorrect > 0) {
+    // let numberCorrect = answersCorrect.filter(x => x === true)
     let iH = ''
-    if (answersCorrect > 0) {
-        iH += `${answersCorrect} out of ${myQuestions.length} correct.`
+    let count = 0
+    for (var j = 0; j < answersCorrect.length; ++j) {
+        if(answersCorrect[j] === true)
+        count++ 
+    }
+    // if (answersCorrect.includes(true)) {
+        //     console.log(numberCorrect);
+        // }
+    if (count > 0) {
+        iH += `${count} out of ${myQuestions.length} correct.`;
     }
     numberCorrect.innerHTML = iH
 }
+
 
 const myQuestions = [
     {
