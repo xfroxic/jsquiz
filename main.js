@@ -1,55 +1,58 @@
-// const quizContainer = document.getElementById('quiz')
-// const questionBoxes = document.getElementById('questionBox')
-// const submitButton = document.getElementById('submit')
+function buildQuiz(){
+    // var element = document.getElementById('questionContainer')
+    // element.innerText = 'test'
+    let questionContainer = document.getElementById('questionContainer')
+    let iH = ''
+    for (i = 0; i < myQuestions.length; i++) {
+        if (i % 2 == 0 || i == 0) {
+            iH += `<div class="row" id="quiz">`
+        }
+        iH += `            
+                <div class="col-sm-6" id="question_${i}">
+                    <div class="container-fluid" style="margin: 30px;">
+                        <div class="row">
+                            <h3>Question ${ myQuestions[i].number }</h3>
+                        </div>
+                        <div class="row">
+                            <p>${ myQuestions[i].question }</p>
+                        </div>
+                        <div class="row">
+                            <input type="text" onBlur="getAnswer(this, ${i})" id="submit">
+                        </div>
+                    </div>
+                </div>        
+        `
+        if (i % 2 != 0) {
+            iH += `</div>`
+        }
+    }
+    questionContainer.innerHTML = iH
+}
 
-// function buildQuiz(){
-//     const output = [];
+let answersCorrect = 0
 
-//     myQuestions.forEach((currentQuestion, questionNumber) => {
-//         output.push(
-//             `<div class="question"> ${currentQuestion.question}</div>
-//             <input type="text" name="question${questionNumber}"</div>`
-//             )
-//         }
-//     )
-//     // quizContainer.innerHTML = output.join('');
-// }
+function getAnswer(currentInput, currentQuestionIndex) {
+    let userInput = currentInput.value
+    if (userInput == `${myQuestions[currentQuestionIndex].answer}`) {
+        document.getElementById("question_"+currentQuestionIndex).style.backgroundColor = 'lightGreen';
+        // answersCorrect++;
+        // console.log(answersCorrect);
+        // correctAnswerTracker();
+    }
+    else { document.getElementById("question_" + currentQuestionIndex).style.backgroundColor = 'lightCoral';
+        // answersCorrect--;
+    }
+}
 
-// function showResults() {
-//     let submitButton = document.getElementById('submit').value
-//     myQuestions.forEach( (currentQuestion, questionNumber) => {
-//         if (submitButton === currentQuestion.answer) {
-//             document.getElementById('questionBox').style.backgroundColor = 'lightGreen'
-//         }
-//         else { document.getElementById('questionBox').style.backgroundColor = 'lightCoral' }
-//         }
-//     )
-// }
-
-
-// submitButton.addEventListener('click', showResults)
-
-// function buildQuiz(){
-//     questionContainer.innerHTML = `
-//         <div class="row" id="quiz">
-//             <div class="col-sm-6" id="q1">
-//                 <div class="container-fluid" style="margin: 30px;">
-//                     <div class="row">
-//                         <h3>Question ${ myQuestions.number }</h3>
-//                     </div>
-//                     <div class="row">
-//                         <p>${ myQuestions.question }</p>
-//                     </div>
-//                     <div class="row">
-//                         <input type="text" id="submit">
-//                         <button type ="button" onclick="getAnswer()" class ="btn btn-primary" style="margin-left: 10px;">Submit Answer</button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//         for (question in myQuestions)
-//     `
-// }
+function correctAnswerTracker() {
+    alert
+    let numberCorrect = document.getElementById("numberCorrect")
+    let iH = ''
+    if (answersCorrect > 0) {
+        iH += `${answersCorrect} out of ${myQuestions.length} correct.`
+    }
+    numberCorrect.innerHTML = iH
+}
 
 const myQuestions = [
     {
@@ -103,82 +106,4 @@ const myQuestions = [
         answer: "nfts"
     },
 ]
-
-// buildQuiz();
-
-// function getAnswer() {
-//     let submitButton = document.getElementById('submit').value
-//     if (submitButton == `${ myQuestions.answer }`)  {
-//         document.getElementById('q1').style.backgroundColor = 'lightGreen'}
-//     else { document.getElementById('q1').style.backgroundColor = 'lightCoral'}
-//     }
-    
-function question1() {
-    let submitButton = document.getElementById('submit1').value
-    if (submitButton == 24) {
-        document.getElementById('q1').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q1').style.backgroundColor = 'lightCoral'}
-    }
-
-function question2() {
-    let submitButton = document.getElementById('submit2').value
-    if (submitButton == 9001) {
-        document.getElementById('q2').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q2').style.backgroundColor = 'lightCoral'}
-    }
-
-function question3() {
-    let submitButton = document.getElementById('submit3').value
-    if (submitButton == 9000) {
-        document.getElementById('q3').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q3').style.backgroundColor = 'lightCoral'}
-    }
-
-function question4() {
-    let submitButton = document.getElementById('submit4').value
-    if (submitButton == "clown") {
-        document.getElementById('q4').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q4').style.backgroundColor = 'lightCoral'}
-    }
-
-function question5() {
-    let submitButton = document.getElementById('submit5').value
-    if (submitButton == "underwater basket weaver") {
-        document.getElementById('q5').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q5').style.backgroundColor = 'lightCoral'}
-    }
-
-function question6() {
-    let submitButton = document.getElementById('submit6').value
-    if (submitButton == "zoom") {
-        document.getElementById('q6').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q6').style.backgroundColor = 'lightCoral'}
-    }
-
-function question7() {
-    let submitButton = document.getElementById('submit7').value
-    if (submitButton == 4) {
-        document.getElementById('q7').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q7').style.backgroundColor = 'lightCoral'}
-    }
-
-function question8() {
-    let submitButton = document.getElementById('submit8').value
-    if (submitButton == "firestarter") {
-        document.getElementById('q8').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q8').style.backgroundColor = 'lightCoral'}
-    }
-
-function question9() {
-    let submitButton = document.getElementById('submit9').value
-    if (submitButton == "lucastle") {
-        document.getElementById('q9').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q9').style.backgroundColor = 'lightCoral'}
-    }
-
-function question10() {
-    let submitButton = document.getElementById('submit10').value
-    if (submitButton == "nfts") {
-        document.getElementById('q10').style.backgroundColor = 'lightGreen'}
-    else { document.getElementById('q10').style.backgroundColor = 'lightCoral'}
-    }
+window.onload = function () { buildQuiz(); }
