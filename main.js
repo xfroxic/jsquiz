@@ -35,17 +35,18 @@ function getAnswer(currentInput, currentQuestionIndex) {
     let userInput = currentInput.value
     if (userInput == `${myQuestions[currentQuestionIndex].answer}`) {
         document.getElementById("question_"+currentQuestionIndex).style.backgroundColor = 'lightGreen';
-        // answersCorrect++;
-        // console.log(answersCorrect);
-        // correctAnswerTracker();
+        answersCorrect++;
+        console.log(answersCorrect);
+        correctAnswerTracker();
     }
     else { document.getElementById("question_" + currentQuestionIndex).style.backgroundColor = 'lightCoral';
-        // answersCorrect--;
+        answersCorrect--;
     }
 }
 
 function correctAnswerTracker() {
-    alert
+    // alert
+    // let correctAnswers = document.getElementById("question_" + currentQuestionIndex).style.backgroundColor = 'lightGreen'
     let numberCorrect = document.getElementById("numberCorrect")
     let iH = ''
     if (answersCorrect > 0) {
